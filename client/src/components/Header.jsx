@@ -1,19 +1,13 @@
-import { Button, Navbar, TextInput } from 'flowbite-react';
+import { Avatar, Button, Dropdown, Navbar, TextInput } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React, { useState } from 'react';
+import { useSelector } from "react-redux"
 
 export default function Header() {
   const path = useLocation().pathname;
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const [theme, setTheme] = useState('light'); // Default theme
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-    document.documentElement.classList.toggle('dark');
-  };
-
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <Navbar className="border-b-2">
       {/* Brand Logo */}
@@ -54,11 +48,35 @@ export default function Header() {
         </Button>
 
         {/* Sign-In Button */}
-        <Link to='/sign-in'>
+
+        {currentUser ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar alt='user' img={currentUser.profilePicture} rounded />
+            }
+          >
+            <Dropdown.Header>
+              <span className='block text-sm'>@{currentUser.username}</span>
+              <span className='block text-sm font-medium truncate'>
+                {currentUser.email}
+              </span>
+            </Dropdown.Header>
+            <Link to={'/dashboard?tab=profile'}>
+              <Dropdown.Item>Profile</Dropdown.Item>
+            </Link>
+            <Dropdown.Divider />
+            <Dropdown.Item >Sign out</Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <Link to='/sign-in'>
             <Button gradientDuoTone='purpleToBlue' outline>
               Sign In
             </Button>
           </Link>
+        )}
+
 
         {/* Navbar Toggle */}
         <Navbar.Toggle />
