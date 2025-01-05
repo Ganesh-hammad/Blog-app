@@ -5,6 +5,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { toggleTheme } from '../features/theme/themeSlice';
+import '../index.css';
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -88,8 +89,8 @@ export default function Header() {
       </div>
 
       {/* Navbar Links */}
-
-      <Navbar.Collapse>
+      <div className='helllo'>
+      <Navbar.Collapse className='md:inline '>
         <Navbar.Link active={path === '/'} as={'div'}>
           <Link to='/'>Home</Link>
         </Navbar.Link>
@@ -100,6 +101,7 @@ export default function Header() {
           <Link to='/projects'>Projects</Link>
         </Navbar.Link>
       </Navbar.Collapse>
+      </div>
     </Navbar>
   );
 }

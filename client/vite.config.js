@@ -1,35 +1,35 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-server: {
-  proxy: {
-    '/api': {
-      target: 'http://localhost:3000',
-      secure: false,
-    },
-  },
-},
-  plugins: [],
-}
-
-// import { defineConfig } from 'vite';
-// import react from '@vitejs/plugin-react-swc';
-
-// // https://vitejs.dev/config/
-// export default defineConfig({
-//   server: {
-//     proxy: {
-//       '/api': {
-//         target: 'http://localhost:3000',
-//         secure: false,
-//       },
+// /** @type {import('tailwindcss').Config} */
+// export default {
+//   content: [
+//     "./index.html",
+//     "./src/**/*.{js,ts,jsx,tsx}",
+//   ],
+//   theme: {
+//     extend: {},
+//   },
+// server: {
+//   proxy: {
+//     '/api': {
+//       target: 'http://localhost:3000',
+//       secure: false,
 //     },
 //   },
-//   plugins: [react()],
-// });
+// },
+//   plugins: [],
+// }
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        secure: false,
+      },
+    },
+  },
+  plugins: [react()],
+});

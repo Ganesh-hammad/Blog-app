@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 /* @import 'flowbite'; */
+
+@media (max-width: 767px) {
+    .helllo {
+      width: 100vw; 
+    }
+  }
