@@ -44,7 +44,7 @@ export const signin = async (req, res, next) => {
         
         // npm install jsonwebtoken
         const token = jwt.sign(
-            { id: validUser._id, isAdmin: validUser._isAdmin }, process.env.JWT_SECRET_KEY);
+            { id: validUser._id, isAdmin: validUser.isAdmin }, process.env.JWT_SECRET_KEY);
             const {password:pass, ...rest} = validUser._doc;
             res
             .status(200)
